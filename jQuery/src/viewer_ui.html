@@ -1,0 +1,40 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>画像ビューア</title>
+<script src="jquery-1.6.2.js"></script>
+<script src="jquery-ui-1.8.16.custom.min.js"></script>
+<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
+<script type="text/javascript">
+$(function(){
+	// サムネール画像をドラッグ可能にする
+	$(".thumb").draggable({helper: "clone"});
+
+	// サムネール画像がドロップされたときの処理
+	$(".main").droppable({
+		// dropイベント
+		drop: function(event, ui) {
+			// ドラッグされた要素のsrc属性の値を取り出す
+			var selectedSrc = ui.draggable.attr("src");
+
+			// メイン画像をフェードアウトする
+			$(".main").fadeOut("normal", function() {
+				// メイン画像のsrc属性の値を変更する
+				$(".main").attr("src", selectedSrc);
+				// メイン画像をフェードインする
+				$(".main").fadeIn();
+			});
+		}
+	});
+});
+</script>
+</head>
+<body>
+<img src="spring.jpg" width="90" height="90" class="thumb">
+<img src="summer.jpg" width="90" height="90" class="thumb">
+<img src="autumn.jpg" width="90" height="90" class="thumb">
+<img src="winter.jpg" width="90" height="90" class="thumb">
+<hr>
+<img src="spring.jpg" width="320" height="320" class="main">
+</body>
+</html>

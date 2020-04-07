@@ -1,0 +1,70 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>スライドショー</title>
+<script src="jquery-1.6.2.js"></script>
+<script type="text/javascript">
+$(function(){
+	// 画像インデックスを宣言
+	var imgIndex;
+	// タイマーIDを宣言
+	var timerId;
+
+	// ボタンがクリックされたときの処理
+	$("#slideshow").click(function(){
+		// 画像インデックスを先頭に指定
+		imgIndex = 0;
+
+		// 画像切り替えを実行
+		changeImage();
+
+		// ボタンを使用不可にする
+		$("#slideshow").prop("disabled", true);
+
+		// タイマー開始
+		timerId = setInterval(changeImage,5000);
+	});
+
+	// 画像を切り替える関数
+	var changeImage = function() {
+		// 画像インデックスのsrc属性の値を取り出す
+		var selectedSrc = $(".thumb:eq("+imgIndex+")").attr("src");
+
+		// すべてのサムネイル画像から枠を取り除く
+		$(".thumb").css("border", "");
+		// 表示しているサムネイル画像に枠を付ける
+		$(".thumb:eq("+imgIndex+")").css("border", "thick solid #FF33FF");
+
+
+		// メイン画像をフェードアウトする
+		$(".main").fadeOut("normal", function() {
+			// メイン画像のsrc属性の値を変更する
+			$(".main").attr("src", selectedSrc);
+			// メイン画像をフェードインする
+			$(".main").fadeIn();
+		});
+
+		// 画像インデックスを次に移動（１増やす）
+		imgIndex++;
+
+		// 画像インデックスが要素数と一致したときタイマー停止
+		if (imgIndex == $(".thumb").length) {
+			clearInterval(timerId);
+			// ボタンを使用可能にする
+			$("#slideshow").prop("disabled", false);
+		}
+	};
+});
+</script>
+</head>
+<body>
+<input type="button" value="スライドショー開始" id="slideshow">
+<hr>
+<img src="spring.jpg" width="90" height="90" class="thumb">
+<img src="summer.jpg" width="90" height="90" class="thumb">
+<img src="autumn.jpg" width="90" height="90" class="thumb">
+<img src="winter.jpg" width="90" height="90" class="thumb">
+<hr>
+<img src="summer.jpg" width="320" height="320" class="main">
+</body>
+</html>

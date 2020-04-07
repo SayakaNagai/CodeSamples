@@ -1,0 +1,7 @@
+﻿<option value="1_1">ぞう
+<option value="1_2">きりん
+<option value="1_3">ライオン
+<option value="1_4">さる
+<option value="1_5">くま
+<option value="1_6">ゴリラ
+

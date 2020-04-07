@@ -1,0 +1,22 @@
+﻿<datalist>
+	<dataset>
+		<data_label>A</data_label>
+		<data_value>100</data_value>
+	</dataset>
+	<dataset>
+		<data_label>B</data_label>
+		<data_value>50</data_value>
+	</dataset>
+	<dataset>
+		<data_label>C</data_label>
+		<data_value>120</data_value>
+	</dataset>
+	<dataset>
+		<data_label>D</data_label>
+		<data_value>80</data_value>
+	</dataset>
+	<dataset>
+		<data_label>E</data_label>
+		<data_value>150</data_value>
+	</dataset>
+</datalist>

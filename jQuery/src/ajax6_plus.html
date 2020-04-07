@@ -1,0 +1,74 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>非同期通信サンプル</title>
+<script src="jquery-1.6.2.js"></script>
+<script type="text/javascript">
+$(function(){
+	// ボタンがクリックされたときの処理
+	$(":button").click(function() {
+		// テーブルの中身を空にする
+		$("table").html("");
+
+		// 「data.xml」を読み込む
+		$.ajax({
+			type: "GET",
+			url: "data.xml",
+			dataType: "xml",
+			success: createGraph,
+			error: displayError
+		});
+	});
+
+	// グラフを作成する関数
+	var createGraph = function(xml) {
+		// datasetタグの要素を繰り返し処理する
+		$(xml).find("dataset").each(function(){
+			// data_labeタグのテキストを取り出す
+			var label = $(this).find("data_label").text();
+
+			// data_valueタグのテキストを取り出す
+			var value = $(this).find("data_value").text();
+
+			// 行（ラベル、値、グラフ）を作成
+			var row = '<tr>'
+				+ '<td>' + label + '</td>'
+				+ '<td>' + value + '</td>'
+				+ '<td>'
+				+ '<img src="bar.gif" height="10" '
+				+ 'width="' + value + '">'
+				+ '</td>'
+				+ '</tr>';
+
+			// 行を追加する
+			$("table").append(row);
+		});
+
+		// エラーメッセージを削除
+		$("span").text("");
+	};
+
+	// エラーを表示する関数
+	var displayError = function(request, status, thrown) {
+		// statusによってエラーメッセージを切り替える　10
+		if (status == "error") {
+			$("span").text("ファイルが見つかりません。");
+		} else if (status == "parsererror") {
+			$("span").text("XMLデータに誤りがあります。");
+		} else {
+			$("span").text("その他のエラー：" + status);
+		}
+	};
+});
+</script>
+<style>
+.error {color: #FF3333}
+</style>
+</head>
+<body>
+<input type="button" value="XMLの読み込み">
+<hr>
+<table></table>
+<span class="error">データが読み込まれていません。</span>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="Shift-JIS">
+<title>動画を再生しよう</title>
+</head>
+<body>
+<form name="form1">
+<input type="button" name="playButton" value="Play" onClick="changePlay()">
+<input type="range" name="timeRange" min="0" step="0.1" value="0" onChange="changeTime()">
+Time: <span id="timeText"></span>
+<br>
+<input type="button" name="muteButton" value="Mute" onClick="changeMute()">
+<input type="range" name="volumeRange" min="0" max="1" step="0.1" value="1" onChange="changeVolume()">
+Volume: <span id="volumeText">1</span>
+<br>
+<input type="button" name="sizeButton" value="Full Size" onClick="changeSize(true)">
+<input type="range" name="sizeRange" min="320" step="1" value="320" onChange="changeSize(false)">
+Size: <span id="sizeText">320*240</span>
+</form>
+<hr>
+<video id="video1" width="320" height="240" poster="sample1.jpg">
+	<source src="sample1.mp4">
+	<source src="sample1.webm">
+</video>
+
+<script type="text/javascript">
+	// ビデオの取得
+	var video = document.getElementById("video1");
+
+	// SPAN（テキスト）の取得
+	var volumeText = document.getElementById("volumeText");
+	var timeText = document.getElementById("timeText");
+	var sizeText = document.getElementById("sizeText");
+	
+	// 再生／一時停止の切り替え関数
+	function changePlay() {
+		// 停止中かどうかで処理を切り替える
+		if (video.paused) {
+			// 再生
+			video.play();
+			// ボタンのラベルをPauseに変更
+			document.form1.playButton.value = "Pause";
+		} else {
+			// 一時停止
+			video.pause();
+			// ボタンのラベルをPlayに変更
+			document.form1.playButton.value = "Play";
+		}
+	}
+
+	// 消音／消音解除の切り替え関数
+	function changeMute() {
+		// 消音かどうかで処理を切り替える
+		if (video.muted) {
+			// 消音解除
+			video.muted = false;
+			// ボタンのラベルをMuteに変更
+			document.form1.muteButton.value = "Mute";
+		} else {
+			// 消音
+			video.muted = true;
+			// ボタンのラベルをSpeakerに変更
+			document.form1.muteButton.value = "Speaker";
+		}
+	}
+
+	// 音量を変更する関数
+	function changeVolume(buttonClick) {
+		// 音量をスライダの値に変更
+		video.volume = document.form1.volumeRange.value;
+		// 音量（0.0～1.0）をテキストで表示
+		volumeText.innerHTML = video.volume;
+	}
+
+	// 再生位置を変更する関数
+	function changeTime() {
+		// 再生位置の変更
+		video.currentTime = document.form1.timeRange.value;
+	}
+
+	// 再生中イベントの登録
+	video.addEventListener("timeupdate", showTime, false);
+
+	// 再生位置を表示する関数
+	function showTime() {
+		// スライダの最大値に動画の長さを指定
+		document.form1.timeRange.max = video.duration;
+		// スライダの値を再生位置に変更
+		document.form1.timeRange.value = video.currentTime;
+		// 再生位置／長さをテキストで表示
+		timeText.innerHTML = Math.round(video.currentTime) + "s/"
+			+ Math.round(video.duration) + "s";
+	}
+	
+	// 動画サイズを変更する関数
+	function changeSize(full) {
+		// スライダの最大値をブラウザの幅に変更
+		document.form1.sizeRange.max
+		 = document.body.clientWidth;
+
+		// 最大化ボタンをクリックしたときの処理
+		if (full) {
+			// スライダの値をブラウザの幅に変更
+			document.form1.sizeRange.value
+				= document.body.clientWidth;
+		}
+
+		// VIDEOタグの幅をスライダの値に変更
+		video.width = document.form1.sizeRange.value;
+		// VIDEOタグの高さを計算
+		video.height = video.width*(240/320);
+		// 動画のサイズをテキストで表示
+		sizeText.innerHTML = video.width + "*" + video.height;
+	}
+</script>
+</body>
+</html>
+
+

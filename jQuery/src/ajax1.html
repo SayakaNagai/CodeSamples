@@ -1,0 +1,21 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>非同期通信サンプル</title>
+<script src="jquery-1.6.2.js"></script>
+<script type="text/javascript">
+$(function(){
+	// ボタンがクリックされたときの処理
+	$(":button").click(function(){
+		// 「data.txt」ファイルを読み込みSPANタグに書き込む
+		$("span").load("data.txt");
+	});
+});
+</script>
+</head>
+<body>
+<input type="button" value="読み込み">
+<hr>
+<span>［読み込み］ボタンをクリックしてください。</span>
+</body>
+</html>

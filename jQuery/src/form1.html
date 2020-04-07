@@ -1,0 +1,125 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>登録フォーム</title>
+<script src="jquery-1.6.2.js"></script>
+<script type="text/javascript">
+$(function(){
+	// フォームがサブミットされたときの処理
+	$("form").submit(function(){
+		// サブミットチェック用の変数を宣言
+		var checkSubmit = true;
+
+		// 名前の入力チェック
+		if ($("#uname").val() == "") {
+			// 未入力時はerrorクラスを追加
+			$("#uname").addClass("error");
+			// メッセージを追加
+			$("#uname+span").text("名前を入力してください。");
+			// 未入力なのでサブミットさせない
+			checkSubmit = false;
+		} else {
+			// 入力時はerrorクラスを削除
+			$("#uname").removeClass("error");
+			// メッセージを削除
+			$("#uname+span").text("");
+		}
+
+		// 性別の入力チェック
+		if ($(":radio:checked").length == 0) {
+			// チェックされた要素がない（＝未入力）
+			// errorクラスを追加
+			$(":radio").addClass("error");
+			// メッセージを追加
+			$(":radio+span").text("性別を入力してください。");
+			// 未入力なのでサブミットさせない
+			checkSubmit = false;
+		} else {
+			// 入力時はerrorクラスを削除
+			$(":radio").removeClass("error");
+			// メッセージを削除
+			$(":radio+span").text("");
+		}
+
+		// サブミットチェック用の変数を返す
+		return checkSubmit;
+	});
+
+	// メールアドレスが変更されたときの処理
+	$("#umail").change(function(){
+		// メールアドレスの書式チェック
+		if ($("#umail").val().match(/^[\w\.-]+\@[\w\.-]+$/)) {
+			// 書式が正しい
+			$("#umail").removeClass("error");
+			$("#umail+span").text("");
+		} else {
+			// 書式に誤りがある
+			$("#umail").addClass("error");
+			$("#umail+span").text("書式に誤りがあります。");
+		}
+	});
+
+	// 郵便番号が変更されたときの処理
+	$("#uzip").change(function(){
+		// 郵便番号の書式チェック
+		if ($("#uzip").val().match(/^\d{3}\-\d{4}$/)) {
+			// 書式が正しい
+			$("#uzip").removeClass("error");
+			$("#uzip+span").text("");
+		} else {
+			// 書式に誤りがある
+			$("#uzip").addClass("error");
+			$("#uzip+span").text("書式に誤りがあります。");
+		}
+	});
+
+	// 住所の入力中の処理
+	$("textarea").keyup(function(){
+		// 文字数を取得
+		var inputLength = $("textarea").val().length;
+
+		// 住所の文字数チェック
+		if (inputLength <= 100) {
+			// 100文字以内
+			$("textarea").removeClass("error");
+			$("textarea+span").text(inputLength+"/100");
+		} else {
+			// 100文字を超えた
+			$("textarea").addClass("error");
+			$("textarea+span").text("入力文字数が長すぎます。");
+		}
+	});
+});
+</script>
+<style>
+.error {background-color:#FFCCCC;}
+.alert {color:#FF0000; font-size:small;}
+</style>
+</head>
+<body>
+<form>
+お名前を入力してください。（必須）<br>
+<input type="text" name="uname" id="uname">
+<span class="alert"></span>
+<br><br>
+性別を入力してください。（必須）<br>
+<input type="radio" name="usex" value="M">男性
+<input type="radio" name="usex" value="F">女性
+<span class="alert"></span>
+<br><br>
+メールアドレスを入力してください。<br>
+<input type="text" name="umail" size="50" id="umail">
+<span class="alert"></span>
+<br><br>
+郵便番号を入力してください。（例：012-3456）<br>
+<input type="text" name="uzip" id="uzip">
+<span class="alert"></span>
+<br><br>
+住所を入力してください。（100文字まで）<br>
+<textarea name="uaddress" cols="50" rows="3"></textarea>
+<span class="alert"></span>
+<br><br>
+<input type="submit" value="登録する">
+</form>
+</body>
+</html>

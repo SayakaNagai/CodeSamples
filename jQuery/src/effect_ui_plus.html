@@ -1,0 +1,41 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>エフェクトサンプル</title>
+<script src="jquery-1.6.2.js"></script>
+<script src="jquery-ui-1.8.16.custom.min.js"></script>
+<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
+<script type="text/javascript">
+$(function(){
+	// 非表示ボタンがクリックされたときの処理
+	$("#button_hide").click(function(){
+		// 画像を選択したエフェクトで非表示にする
+		$("img").hide($(":radio:checked").val(), 3000);
+	});
+
+	// 表示ボタンがクリックされたときの処理
+	$("#button_show").click(function(){
+		// 画像を選択したエフェクトで表示する
+		$("img").show($(":radio:checked").val());
+	});
+});
+</script>
+</head>
+<body>
+<input type="button" value="非表示" id="button_hide">
+<input type="button" value="表示" id="button_show">
+<hr>
+<input type="radio" name="effect" value="blind"
+checked>Blind
+<input type="radio" name="effect" value="clip">Clip
+<input type="radio" name="effect" value="drop">Drop
+<input type="radio" name="effect" value="explode">Explode
+<input type="radio" name="effect" value="fold">Fold
+<input type="radio" name="effect" value="puff">Puff
+<input type="radio" name="effect" value="pulsate">Pulsate
+<input type="radio" name="effect" value="scale">Scale
+<input type="radio" name="effect" value="slide">Slide
+<hr>
+<img src="sample.jpg" width="320" height="320">
+</body>
+</html>

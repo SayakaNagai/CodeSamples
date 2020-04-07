@@ -1,0 +1,35 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>エフェクトサンプル</title>
+<script src="jquery-1.6.2.js"></script>
+<script type="text/javascript">
+$(function(){
+	// フェードアウトボタンがクリックされたときの処理
+	$("#button_fadeOut").click(function(){
+		// 画像をフェードアウトする
+		$("img").fadeOut();
+	});
+
+	// フェードインボタンがクリックされたときの処理
+	$("#button_fadeIn").click(function(){
+		// 画像をフェードインする
+		$("img").fadeIn();
+	});
+
+	// アウト／インボタンがクリックされたときの処理
+	$("#button_fadeToggle").click(function(){
+		// フェードアウト／インを切り替える
+		$("img").fadeToggle();
+	});
+});
+</script>
+</head>
+<body>
+<input type="button" value="フェードアウト" id="button_fadeOut">
+<input type="button" value="フェードイン" id="button_fadeIn">
+<input type="button" value="アウト／イン" id="button_fadeToggle">
+<hr>
+<img src="sample.jpg" width="320" height="320">
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Canvas</title>
+    <script>
+   function drawRect() {
+   var canvas = document.getElementById("main"); //omazinai
+   var context = canvas.getContext("2d"); //omazinai
+   context.strokeStyle = "Red"; //線の色(style)の設定
+   context.strokeRect(50,50,100,180); //輪郭のみの四角形の描画(x,y,幅,高さ)
+   context.fillStyle = "blue"; //塗りつぶしの色(style)の設定
+   context.fillRect(200,50,100,180);
+   }
+
+   function drawLine(){
+   var canvas = document.getElementById("main"); //omazinai
+   var context = canvas.getContext("2d"); //omazinai
+   context.strokeStyle = "Red";
+   context.beginPath(); //パスの開始
+   context.moveTo(350,50); //始点の移動
+   context.lineTo(600,150); //線の作成
+   context.lineTo(400,200); //線の作成
+   context.closePath(); //パスを閉じる
+   context.stroke(); //パスを描画(このメソッドで表示される)
+}
+
+   function drawCircle() {
+   var canvas = document.getElementById("main"); //omazinai
+   var context = canvas.getContext("2d"); //omazinai
+
+   context.strokeStyle = "red"; //線の色指定
+   context.beginPath();
+   context = canvas.arc(200,350,80,0,2*Math.PI,false); //(200,350),r=80 circle
+   context.stroke();
+
+   context.fillStyle = "blue";
+   context.beginPath();
+   context = canvas.arc(450,350,80,0,2*Math.PI,false); 
+   context.fill(); //パスの塗りつぶし
+
+   }
+    </script>
+
+    <style>
+      #buttons {
+      background-color: #CCCCCC;
+      border:solid #999999 1px;
+      width: 620px;
+      padding: 10px;
+      }
+    </style>
+
+  </head>
+  <body>
+    <canvas id="main" width="640" height="480"></canvas>
+    <div id="buttons">
+      <input type="button" value="四角形" onClick="drawRect()">
+      <input type="button" value="線" onClick="drawLine()">
+      <input type="button" value="円" onClick="drawCircle()">
+    </div>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>非同期通信サンプル</title>
+<script src="jquery-1.6.2.js"></script>
+<script type="text/javascript">
+$(function(){
+	// ウィンドウの高さを取得
+	var window_height = $(window).height();
+
+	// ウィンドウの高さを表示
+	$("#window_height").text(window_height);
+
+	// second_blockの位置を取得
+	var second_offset = $("#second_block").offset();
+
+	// second_blockのTOP位置を表示
+	$("#second_top").text(second_offset.top);
+
+	// スクロールされたときの処理
+	$(window).scroll(function() {
+		// 縦方向のスクロール量を取得
+		var scroll_top = $(window).scrollTop();
+
+		// スクロール量をスクロール位置に表示
+		$("#scroll_text").text("スクロール量："+scroll_top);
+		$("#scroll_text").css("top",scroll_top);
+
+		// 「second_block」が表示されるかどうか
+		if (Number(scroll_top)+Number(window_height) > Number(second_offset.top)) {
+			// ファイルを読み込み表示
+			$("#second_block").load("second_data.txt");
+		}
+	});
+});
+</script>
+<style>
+body {padding:0;margin:0;}
+#first_block {background-color:#FFFFCC; height:800; width:600;}
+#second_block {background-color:#CCFFCC; width:600;}
+#scroll_text {background-color:#FFCCCC; position:absolute; left:600;}
+</style>
+</head>
+<body>
+<span id="scroll_text"></span>
+<div id="first_block">
+高さが800ピクセルの記事<br>
+<br>
+ウィンドウの高さ：<span id="window_height"></span>
+<br>
+second_blockの位置：<span id="second_top"></span>
+</div>
+<div id="second_block">読み込み中</div>
+</body>
+</html>

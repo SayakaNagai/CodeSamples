@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="Shift-JIS">
+<title>アンケートフォーム</title>
+</head>
+<body>
+<form name="form1">
+この本の購入日を教えてください。<br>
+<input type="date" name="pdate" value="2011-07-01">
+<br><br>
+一か月あたりの書籍の平均購入額を教えてください。<br>
+<input type="number" name="pprice" min="0" step="500" value="5000">円
+<br><br>
+一日あたりの平均読書時間を教えてください。<br>
+<input type="time" name="rtime" min="0" step="1800" value="01:30">
+<br><br>
+本書の評価を教えてください。（5段階）<br>
+<input type="range" name="star" min="1" max="5" step="1" value="3" onChange="showStar()">
+<span id="outStar">3：ふつう</span>
+<br><br>
+本書に関するご意見をお聞かせください。（100文字まで）<br>
+<textarea name="message" placeholder="例）CD-ROMがついているとうれしい。" cols="40" rows="3" maxlength="100" onInput="showLength()"></textarea>
+<span id="messageLength">0/100</span>
+<br><br>
+<input type="submit" value="送信する">
+</form>
+<script>
+	// 評価のデータ
+	var star = new Array("1：とても悪い","2：悪い","3：ふつう","4：良い","5：とても良い");
+
+	// SPAN（テキスト）の取得
+	var outStar = document.getElementById("outStar");
+	var messageLength = document.getElementById("messageLength");
+
+	// 評価の値を表示する関数
+	function showStar() {
+		outStar.innerHTML = star[document.form1.star.value-1];
+	}
+
+	// 入力文字数を表示する関数
+	function showLength() {
+		messageLength.innerHTML
+		 = document.form1.message.value.length+"/100";
+	}
+</script>
+</body>
+</html>

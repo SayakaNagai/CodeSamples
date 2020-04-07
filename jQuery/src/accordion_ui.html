@@ -1,0 +1,39 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>アコーディオンサンプル</title>
+<script src="jquery-1.6.2.js"></script>
+<script src="jquery-ui-1.8.16.custom.min.js"></script>
+<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
+<script type="text/javascript">
+$(function(){
+	// アコーディオンを指定
+	$("#accordion").accordion({
+		header: "h3",
+		autoHeight:false
+	});
+});
+</script>
+</head>
+<body>
+<div id="accordion">
+<h3><a href="#">ももたろう</a></h3>
+<div>
+むかしむかし、あるところにおじいさんとおばあさんがいました。<br>
+モモから生まれた桃太郎は鬼を退治しました。<br>
+めでたしめでたし。
+</div>
+<h3><a href="#">うらしまたろう</a></h3>
+<div>
+むかしむかし、浦島太郎はいじめられているカメを助けました。<br>
+玉手箱をあけると浦島太郎はおじいさんになってしまいました。<br>
+めでたしめでたし。
+</div>
+<h3><a href="#">きんたろう</a></h3>
+<div>
+まさかりをかついだ金太郎はクマにまたがりお馬のけいこをしました。<br>
+めでたしめでたし。
+</div>
+</div>
+</body>
+</html>

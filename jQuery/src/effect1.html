@@ -1,0 +1,28 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>エフェクトサンプル</title>
+<script src="jquery-1.6.2.js"></script>
+<script type="text/javascript">
+$(function(){
+	// 非表示ボタンがクリックされたときの処理
+	$("#button_hide").click(function(){
+		// 画像を非表示にする
+		$("img").hide("fast");
+	});
+
+	// 表示ボタンがクリックされたときの処理
+	$("#button_show").click(function(){
+		// 画像を表示する
+		$("img").show("slow");
+	});
+});
+</script>
+</head>
+<body>
+<input type="button" value="非表示" id="button_hide">
+<input type="button" value="表示" id="button_show">
+<hr>
+<img src="sample.jpg" width="320" height="320">
+</body>
+</html>

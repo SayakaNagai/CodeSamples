@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="Shift-JIS">
+<title>音楽を再生しよう</title>
+</head>
+<body>
+<a href="#" onClick="changeSrc(0)"><img src="spring.jpg" width="80" height="80" title="春"></a>
+<a href="#" onClick="changeSrc(1)"><img src="summer.jpg" width="80" height="80" title="夏"></a>
+<a href="#" onClick="changeSrc(2)"><img src="autumn.jpg" width="80" height="80" title="秋"></a>
+<a href="#" onClick="changeSrc(3)"><img src="winter.jpg" width="80" height="80" title="冬"></a>
+<hr>
+<img src="spring.jpg" id="image1" width="320" height="320" title="選択された季節">
+<br>
+<audio id="audio1" src="spring.mp3" controls autoplay></audio>
+
+<script type="text/javascript">
+	// イメージ、オーディオの取得
+	var image = document.getElementById("image1");
+	var audio = document.getElementById("audio1");
+
+	// ソースデータの作成
+	var imageData = new Array("spring.jpg","summer.jpg","autumn.jpg","winter.jpg");
+	var audioData = new Array("spring.mp3","summer.mp3","autumn.mp3","winter.mp3");
+
+	// ソースの切り替え関数
+	function changeSrc(index) {
+		// src属性の切り替え
+		image.src = imageData[index];
+		audio.src = audioData[index];
+		// 再生
+		audio.play();
+	}
+</script>
+</body>
+</html>

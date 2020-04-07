@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="Shift-JIS">
+<title>登録フォーム</title>
+</head>
+<body>
+<form name="form1">
+お名前を入力してください。（必須）<br>
+<input type="text" name="uname" placeholder="例：山田太郎" required>
+<br><br>
+メールアドレスを入力してください。（必須）<br>
+<input type="email" name="umail" size="50" placeholder="例）taro@asciimw.jp" required>
+<br><br>
+URLを入力してください。<br>
+<input type="url" name="uurl" size="50" placeholder="例）http://asciimw.jp/">
+<br><br>
+電話番号を入力してください。<br>
+<input type="tel" name="utel" placeholder="例）012-345-6789" pattern="[\d\-]+">
+<br><br>
+性別を入力してください。（必須）<br>
+<label><input type="radio" name="usex" value="1" required>男性</label>
+<label><input type="radio" name="usex" value="2">女性</label>
+<br><br>
+<fieldset>
+<legend>住所を入力してください。</legend>
+郵便番号<br>
+<input type="text" name="uzip" placeholder="例）102-8584" pattern="\d{3}-\d{4}">
+<br><br>
+住所<br>
+<textarea name="uaddress" placeholder="例）千代田区富士見一丁目8番19号" cols="50" rows="3"></textarea>
+</fieldset>
+<br><br>
+<input type="submit" value="登録する">
+</form>
+</body>
+</html>
+

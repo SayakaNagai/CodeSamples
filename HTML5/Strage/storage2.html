@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="Shift-JIS">
+<title>localStorageとsessionStorage</title>
+</head>
+<body>
+<form name="form1">
+キー：<input type="text" name="ukey">
+<br><br>
+<input type="button" value="値を表示する" onClick="showData()">
+</form>
+<hr>
+<span id="message"></span>
+<script>
+	// SPANタグの取得
+	var message = document.getElementById("message");
+
+	// 値を表示する関数
+	function showData() {
+		// 入力されたキーを取り出す
+		var key = document.form1.ukey.value;
+		// 保存された値を取り出す
+		var localData = localStorage.getItem(key);
+		var sessionData = sessionStorage.getItem(key);
+
+		// キーと値の表示
+		message.innerHTML = 'key: <b>' + key + '</b>'
+		 + '<br>localStorage: <b>' + localData + '</b>'
+		 + '<br>sessionStorage: <b>' + sessionData + '</b>';
+	}
+</script>
+</body>
+</html>

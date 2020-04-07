@@ -1,0 +1,109 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>アンケート</title>
+<script src="jquery-1.6.2.js"></script>
+<script src="jquery-ui-1.8.16.custom.min.js"></script>
+<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
+<script type="text/javascript">
+$(function(){
+	// DatePickerの指定
+	$("#pdate").datepicker({
+		dateFormat: "yy-mm-dd"
+	});
+
+	// スライダーの指定
+	$("#slider").slider({
+		range: "min",
+		value: 3,
+		min: 1,
+		max: 5,
+		slide: function( event, ui ) {
+			$("#star").val(ui.value);
+		}
+	});
+
+	// プルダウンリストが変化したときの処理
+	$("#star").change(function() {
+		$("#slider").slider("value",$("#star").val());
+	});
+
+	// 言語候補の指定
+	var languageData = [
+		"PHP",
+		"Perl",
+		"Java",
+		"Java Script",
+		"jQuery",
+		"C#",
+		"C++",
+		"Basic"
+	];
+
+	// オートコンプリートの指定
+	$("#lang").autocomplete({
+		source: languageData
+	});
+
+	// ボタンがクリックされたときの処理
+	$("#confirm_button").click(function(){
+		// ダイアログに入力内容を追加
+		$("#dialog").html("送信してもよろしいですか？ <hr>");
+		$("#dialog").append("購入日："+$("#pdate").val()+"<br>");
+		$("#dialog").append("評価："+$("#star").val()+"<br>");
+		$("#dialog").append("言語："+$("#lang").val()+"<br>");
+		$("#dialog").append("ご意見："+$("textarea").val()+"<br>");
+
+		// ダイアログを開く
+		$("#dialog").dialog("open");
+	});
+
+	// ダイアログの指定
+	$("#dialog").dialog({
+		autoOpen: false,
+		width: 400,
+		height: 400,
+		modal: true,
+		buttons: {
+			"OK": function() {
+				// フォーム送信
+				$("form").submit();
+			},
+			"Cancel": function() {
+				// ダイアログを閉じる
+				$("#dialog").dialog("close");
+			}
+		}
+	});
+});
+</script>
+<style>
+#slider {width:300;margin:5;}
+</style>
+</head>
+<body>
+<form name="form1">
+この本の購入日を教えてください。<br>
+<input type="text" name="pdate" value="2011-09-01" id="pdate">
+<br><br>
+本書の評価を教えてください。（5段階）<br>
+<select name="star" id="star">
+<option value="5">5：とてもよい
+<option value="4">4：よい
+<option value="3" selected>3：ふつう
+<option value="2">2：わるい
+<option value="1">1：とてもわるい
+</select>
+<div id="slider"></div>
+<br><br>
+興味のある言語を教えてください。<br>
+<input type="text" name="lang" id="lang" size="30">
+<br><br>
+本書に関するご意見をお聞かせください。<br>
+<textarea name="message" cols="40" rows="3"></textarea>
+<br><br>
+<input type="button" value="送信する" id="confirm_button">
+</form>
+<div id="dialog" title="送信確認"></div>
+</body>
+</html>

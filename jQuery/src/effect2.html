@@ -1,0 +1,35 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>エフェクトサンプル</title>
+<script src="jquery-1.6.2.js"></script>
+<script type="text/javascript">
+$(function(){
+	// スライドアップボタンがクリックされたときの処理
+	$("#button_slideUp").click(function(){
+		// 画像をスライドアップする
+		$("img").slideUp();
+	});
+
+	// スライドダウンボタンがクリックされたときの処理
+	$("#button_slideDown").click(function(){
+		// 画像をスライドダウンする
+		$("img").slideDown();
+	});
+
+	// アップ／ダウンボタンがクリックされたときの処理
+	$("#button_slideToggle").click(function(){
+		// スライドアップ／ダウンを切り替える
+		$("img").slideToggle();
+	});
+});
+</script>
+</head>
+<body>
+<input type="button" value="スライドアップ" id="button_slideUp">
+<input type="button" value="スライドダウン" id="button_slideDown">
+<input type="button" value="アップ／ダウン" id="button_slideToggle">
+<hr>
+<img src="sample.jpg" width="320" height="320">
+</body>
+</html>

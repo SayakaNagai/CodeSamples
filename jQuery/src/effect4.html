@@ -1,0 +1,24 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>エフェクトサンプル</title>
+<script src="jquery-1.6.2.js"></script>
+<script type="text/javascript">
+$(function(){
+	// フェードアウトボタンがクリックされたときの処理
+	$("#button_fade").click(function(){
+		// テキストボックスから不透明度を取り出す
+		var opacity = $("#text_fade").val();
+		// 画像をフェードする
+		$("img").fadeTo("slow", opacity);
+	});
+});
+</script>
+</head>
+<body>
+<input type="text" value="0.5" id="text_fade">
+<input type="button" value="フェード開始" id="button_fade">
+<hr>
+<img src="sample.jpg" width="320" height="320">
+</body>
+</html>

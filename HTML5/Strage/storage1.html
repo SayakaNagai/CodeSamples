@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="Shift-JIS">
+<title>localStorageとsessionStorage</title>
+</head>
+<body>
+<form name="form1">
+キー：<input type="text" name="ukey">
+<br><br>
+値：<input type="text" name="udata">
+<br><br>
+<input type="button" value="キーと値をセットする" onClick="setData()">
+</form>
+<hr>
+<span id="message"></span>
+<script>
+	// SPANタグの取得
+	var message = document.getElementById("message");
+
+	// キーと値を保存する関数
+	function setData() {
+		// 入力されたキーと値を取り出す
+		var key = document.form1.ukey.value;
+		var data = document.form1.udata.value;
+
+		// ローカルストレージに保存する
+		localStorage.setItem(key,data);
+		// セッションストレージに保存する
+		sessionStorage.setItem(key,data);
+
+		// 保存完了メッセージの表示
+		message.innerHTML = 'キー＋値を保存しました。';
+	}
+</script>
+</body>
+</html>

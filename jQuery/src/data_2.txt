@@ -1,0 +1,7 @@
+﻿<option value="2_1">イルカ
+<option value="2_2">ペンギン
+<option value="2_3">まぐろ
+<option value="2_4">サメ
+<option value="2_5">イワシ
+<option value="2_6">カニ
+
